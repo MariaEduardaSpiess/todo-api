@@ -1,0 +1,56 @@
+basePath: /todo
+definitions:
+  todoitem.TodoItem:
+    properties:
+      description:
+        type: string
+    type: object
+host: localhost:9000
+info:
+  contact: {}
+  description: API for a Todo App
+  title: Todo API
+  version: "1.0"
+paths:
+  /item:
+    get:
+      description: Get todo items from the database
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/todoitem.TodoItem'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema: {}
+      summary: Get todo items
+      tags:
+      - todo-item
+    post:
+      description: Create todo item in the database
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/todoitem.TodoItem'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      summary: Create todo item
+      tags:
+      - todo-item
+swagger: "2.0"
