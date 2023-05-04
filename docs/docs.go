@@ -43,14 +43,14 @@ const docTemplate = `{
                 }
             },
             "post": {
-                "description": "Create todo item in the database",
+                "description": "CreateTodoItem todo item in the database",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
                     "todo-item"
                 ],
-                "summary": "Create todo item",
+                "summary": "CreateTodoItem todo item",
                 "parameters": [
                     {
                         "description": "body",

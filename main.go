@@ -1,8 +1,9 @@
 package main
 
 import (
+	todoitem "todo-api/app/controller"
 	"todo-api/config"
-	todoitem "todo-api/core/domain/todo-item"
+	"todo-api/infra/database"
 
 	_ "todo-api/docs"
 
@@ -19,6 +20,8 @@ import (
 func main() {
 	config.LoadEnv()
 
+	database.ConfigurePostgresDatabase()
+
 	app := fiber.New()
 	app.Use(
 		logger.New(),
@@ -26,7 +29,7 @@ func main() {
 
 	router := app.Group("/todo")
 	router.Get("/swagger/*", swagger.HandlerDefault)
-	todoitem.NewTodoItemHandler(router.Group("/item"))
+	todoitem.NewTodoItemController(router.Group("/item"))
 
 	err := app.Listen(":" + config.Env.ApiPort)
 	if err != nil {
