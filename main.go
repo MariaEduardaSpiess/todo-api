@@ -20,7 +20,7 @@ import (
 func main() {
 	config.LoadEnv()
 
-	database.ConfigurePostgresDatabase()
+	database.InitDatabase()
 
 	app := fiber.New()
 	app.Use(

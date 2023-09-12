@@ -7,7 +7,7 @@ import (
 )
 
 type TodoItemController struct {
-	service *service.TodoItemService
+	service service.TodoItemService
 }
 
 func NewTodoItemController(router fiber.Router) {

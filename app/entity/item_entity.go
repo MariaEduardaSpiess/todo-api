@@ -2,11 +2,11 @@ package entity
 
 import "gorm.io/gorm"
 
-type TodoItemEntity struct {
+type TodoItem struct {
 	gorm.Model
 	Description string
 }
 
-func (TodoItemEntity) TableName() string {
+func (TodoItem) TableName() string {
 	return "todo_item"
 }

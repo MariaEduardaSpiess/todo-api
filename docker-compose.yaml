@@ -1,12 +1,24 @@
 version: '3.7'
 services:
-  dynamodb:
-    image:  amazon/dynamodb-local
-    container_name: my-dynamodb
-    hostname: dynamodb
-    restart: always
-    volumes:
-      -  ./my-dynamodb-data:/home/dynamodblocal/data
+#  dynamodb:
+#    image:  amazon/dynamodb-local
+#    container_name: my-dynamodb
+#    hostname: dynamodb
+#    restart: always
+#    volumes:
+#      -  ./my-dynamodb-data:/home/dynamodblocal/data
+#    ports:
+#      - 8000:8000
+#    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal/data/"
+
+  postgres-dev:
+    container_name: db
+    image: postgres
     ports:
-      - 8000:8000
-    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal/data/"
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=todo-item
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST=localhost
+      - TZ=UTC
